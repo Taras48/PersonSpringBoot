@@ -3,9 +3,12 @@ package com.spring.service;
 import com.spring.model.User;
 import com.spring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
+@Component
 public class UserServiceImpl implements UserService {
 
     private UserRepository repository;
@@ -40,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id) {
-        //repository.delete(id);
+        repository.deleteById(id);
     }
 
     @Override

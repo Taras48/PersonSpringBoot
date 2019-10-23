@@ -1,6 +1,7 @@
 package com.spring.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,8 +13,11 @@ public class Role {
     private Long id;
     private String role;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> user;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> user = new HashSet<User>();
 
     public Role() {
     }
