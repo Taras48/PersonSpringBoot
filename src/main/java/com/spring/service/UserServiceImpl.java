@@ -3,6 +3,9 @@ package com.spring.service;
 import com.spring.model.User;
 import com.spring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +13,7 @@ import java.util.List;
 
 
 @Component
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private UserRepository repository;
     private PasswordEncoder passwordEncoder;
@@ -20,6 +23,15 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository repository,PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+        User user = repository.getUserByName(name);
+        if (user == null){
+            throw new UsernameNotFoundException("User name Not Found");
+        }
+        return user;
     }
 
 

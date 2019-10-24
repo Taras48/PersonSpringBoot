@@ -1,5 +1,7 @@
 package com.spring.config;
 
+import com.spring.model.Role;
+import com.spring.model.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -24,13 +26,25 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 
         String targetUrl = "";
 
-        Collection<? extends GrantedAuthority> roles = authentication.getAuthorities();
+        /*Collection<? extends GrantedAuthority> roles = authentication.getPrincipal();
         for (GrantedAuthority role : roles){
             if (role.getAuthority().equals("admin")){
                 targetUrl = "/admin";
                 break;
             }
             if (role.getAuthority().equals("user")){
+                targetUrl = "/user";
+                break;
+            }
+        }*/
+
+        User user = (User) authentication.getPrincipal();
+        for (Role role : user.getRoles()){
+            if (role.getRole().equals("admin")){
+                targetUrl = "/admin";
+                break;
+            }
+            if (role.getRole().equals("user")){
                 targetUrl = "/user";
                 break;
             }

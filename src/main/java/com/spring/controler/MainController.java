@@ -5,10 +5,12 @@ import com.spring.model.User;
 import com.spring.service.RoleService;
 import com.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @RestController
 public class MainController {
@@ -23,7 +25,7 @@ public class MainController {
 
     }
 
-    @GetMapping(value = "/login")
+    @GetMapping
     public ModelAndView getLogin() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/login");
