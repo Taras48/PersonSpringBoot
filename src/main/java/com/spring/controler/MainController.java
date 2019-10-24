@@ -23,9 +23,11 @@ public class MainController {
 
     }
 
-    @GetMapping
-    public String getLogin() {
-        return "login";
+    @GetMapping(value = "/login")
+    public ModelAndView getLogin() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/login");
+        return modelAndView;
     }
 
     //userGetMapping
@@ -52,7 +54,7 @@ public class MainController {
         upUser.setPassword(user.getPassword());
         upUser.setRoles(roleService.findAllByRoleIsContaining(role));
         upUser.setMessage(user.getMessage());
-        service.updateUser(upUser);
+        service.saveUser(user);
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;
     }
