@@ -5,5 +5,6 @@ import com.spring.model.User;
 import org.springframework.stereotype.Component;
 
 public interface RoleService {
-    Role getRoleByUser(User user);
+      Role findAllByRole(String role);
+      Role findAllByRoleIsContaining(String role);
 }

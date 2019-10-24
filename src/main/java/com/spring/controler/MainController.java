@@ -1,5 +1,6 @@
 package com.spring.controler;
 
+import com.spring.model.Role;
 import com.spring.model.User;
 import com.spring.service.RoleService;
 import com.spring.service.UserService;
@@ -27,18 +28,31 @@ public class MainController {
         return "login";
     }
 
+    //userGetMapping
+    @GetMapping(value = "/user")
+    public ModelAndView getUserPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/user");
+        return modelAndView;
+    }
+
     //adminPostMapping
     @PostMapping(value = "/admin/add")
-    public ModelAndView postAdd(User user, ModelAndView modelAndView) {
+    public ModelAndView postAdd(User user, ModelAndView modelAndView, String role) {
+        user.setRoles(roleService.findAllByRole(role));
         service.saveUser(user);
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;
     }
 
     @PostMapping(value = "/admin/update")
-    public ModelAndView postUpdate(User user, ModelAndView modelAndView) {
-        user.setRoles(roleService.getRoleByUser(user));
-        service.updateUser(user);
+    public ModelAndView postUpdate(User user, ModelAndView modelAndView, String role) {
+        User upUser = service.getUserById(user.getId());
+        upUser.setName(user.getName());
+        upUser.setPassword(user.getPassword());
+        upUser.setRoles(roleService.findAllByRoleIsContaining(role));
+        upUser.setMessage(user.getMessage());
+        service.updateUser(upUser);
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;
     }
@@ -60,7 +74,7 @@ public class MainController {
 
     @GetMapping(value = "/admin")
     public ModelAndView allUsers(ModelAndView modelAndView) {
-       // modelAndView.addObject("listUsers", service.findAll());
+        modelAndView.addObject("list", service.findAll());
         modelAndView.setViewName("admin/allUser");
         return modelAndView;
     }

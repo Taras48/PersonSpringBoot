@@ -32,12 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) {
-        User upUser = repository.getOne(user.getId());
-        upUser.setName(user.getName());
-        upUser.setPassword(user.getPassword());
-        upUser.setRoles(user.getRoles());
-        upUser.setMessage(user.getMessage());
-        repository.save(upUser);
+        repository.save(user);
 
     }
 

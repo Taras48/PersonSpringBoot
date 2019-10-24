@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,9 +11,30 @@
 <p><a href="/admin/add">Add Users</a> |
     <a href="/admin/update">Update Users</a> |
     <a href="/admin/delete">Delete Users</a> |
-    <a href="/helloUser">User psge</a> |
+    <a href="/user">User psge</a> |
     <a href="/logout">logout</a>
 </p>
+<div th:if="${list.size() != 0}" >
+<table  border="1px solid black">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Message</td>
+        <td>Password</td>
+        <td>Role</td>
+    </tr>
+    <tr th:each="user : ${list}">
+        <td th:text="${user.getId()}">Id</td>
+        <td th:text="${user.getName()}">Name</td>
+        <td th:text="${user.getMessage()}">Message</td>
+        <td th:text="${user.getPassword()}">Password</td>
+        <td th:text="${user.getRoles()}">Role</td>
+    </tr>
+</table>
+</div>
+<div th:if="${list.size() == 0}">
+    <h3>Table is empty!</h3>
+</div>
 
 
 </body>

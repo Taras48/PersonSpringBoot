@@ -12,12 +12,17 @@ public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
 
     @Autowired
-    public RoleServiceImpl(RoleRepository roleRepository){
+    public RoleServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
 
     @Override
-    public Role getRoleByUser(User user) {
-        return roleRepository.getRoleByUser(user);
+    public Role findAllByRole(String role) {
+        return roleRepository.findAllByRole(role);
+    }
+
+    @Override
+    public Role findAllByRoleIsContaining(String role) {
+        return roleRepository.findAllByRoleIsContaining(role);
     }
 }
