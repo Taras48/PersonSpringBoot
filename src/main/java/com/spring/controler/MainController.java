@@ -37,6 +37,7 @@ public class MainController {
 
     @PostMapping(value = "/admin/update")
     public ModelAndView postUpdate(User user, ModelAndView modelAndView) {
+        user.setRoles(roleService.getRoleByUser(user));
         service.updateUser(user);
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;

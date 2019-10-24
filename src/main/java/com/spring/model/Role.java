@@ -11,6 +11,8 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "role")
     private String role;
 
     @ManyToMany(fetch = FetchType.EAGER)
