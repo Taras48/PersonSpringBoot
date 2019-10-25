@@ -1,8 +1,10 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<!doctype html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>AllUsers</title>
 </head>
 <body>
@@ -14,23 +16,23 @@
     <a href="/user">User psge</a> |
     <a href="/logout">logout</a>
 </p>
-<div th:if="${list.size() != 0}" >
-<table  border="1px solid black">
-    <tr>
-        <td>Id</td>
-        <td>Name</td>
-        <td>Message</td>
-        <td>Password</td>
-        <td>Role</td>
-    </tr>
-    <tr th:each="user : ${list}">
-        <td th:text="${user.getId()}">Id</td>
-        <td th:text="${user.getName()}">Name</td>
-        <td th:text="${user.getMessage()}">Message</td>
-        <td th:text="${user.getPassword()}">Password</td>
-        <td th:text="${user.getRoles()}">Role</td>
-    </tr>
-</table>
+<div th:if="${list.size() != 0}">
+    <table border="1px solid black">
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Message</td>
+            <td>Password</td>
+            <td>Role</td>
+        </tr>
+        <tr th:each="user : ${list}">
+            <td th:text="${user.getId()}">Id</td>
+            <td th:text="${user.getName()}">Name</td>
+            <td th:text="${user.getMessage()}">Message</td>
+            <td th:text="${user.getPassword()}">Password</td>
+            <td th:text="${user.getRoles()}">Role</td>
+        </tr>
+    </table>
 </div>
 <div th:if="${list.size() == 0}">
     <h3>Table is empty!</h3>

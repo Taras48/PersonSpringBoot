@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
-@EnableWebSecurity
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Qualifier("userServiceImpl")
