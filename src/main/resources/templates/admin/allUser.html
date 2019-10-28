@@ -5,38 +5,94 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+
     <title>AllUsers</title>
 </head>
 <body>
+<div class="container-fluid">
 
-<h1>All Users</h1>
-<p><a href="/admin/add">Add Users</a> |
-    <a href="/admin/update">Update Users</a> |
-    <a href="/admin/delete">Delete Users</a> |
-    <a href="/user">User psge</a> |
-    <a href="/logout">logout</a>
-</p>
-<div th:if="${list.size() != 0}">
-    <table border="1px solid black">
-        <tr>
-            <td>Id</td>
-            <td>Name</td>
-            <td>Message</td>
-            <td>Password</td>
-            <td>Role</td>
-        </tr>
-        <tr th:each="user : ${list}">
-            <td th:text="${user.getId()}">Id</td>
-            <td th:text="${user.getName()}">Name</td>
-            <td th:text="${user.getMessage()}">Message</td>
-            <td th:text="${user.getPassword()}">Password</td>
-            <td th:text="${user.getRoles()}">Role</td>
-        </tr>
-    </table>
+    <div class="row bg-dark justify-content-between align-self-center">
+        <h3 class="ml-5 my-2 page-header text-light">Progect Name</h3>
+        <a class="mr-5 my-2 text-light" href="/logout">Logout</a>
+    </div>
+
+    <div class="row" style="height: 100vh;">
+        <div class="col-2 nav">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="/admin/add" role="tab"
+                   aria-controls="v-pills-home" aria-selected="true">Admin</a>
+                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="/user" role="tab"
+                   aria-controls="v-pills-profile" aria-selected="false">User</a>
+            </div>
+        </div>
+
+
+        <div class="col-10">
+
+            <h1 class="md-3">Admin panel</h1>
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#User table">User table</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#New user">New user</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="User table" class="tab-pane fade in active">
+                    <h3>User table</h3>
+                    <div th:if="${list.size() != 0}">
+                        <table border="1px solid black">
+                            <tr>
+                                <td>Id</td>
+                                <td>Name</td>
+                                <td>Message</td>
+                                <td>Password</td>
+                                <td>Role</td>
+                            </tr>
+                            <tr th:each="user : ${list}">
+                                <td th:text="${user.getId()}">Id</td>
+                                <td th:text="${user.getName()}">Name</td>
+                                <td th:text="${user.getMessage()}">Message</td>
+                                <td th:text="${user.getPassword()}">Password</td>
+                                <td th:text="${user.getRoles()}">Role</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="New user" class="tab-pane fade in active">
+                    <h3>New user</h3>
+                    Name:<input type="text" name="name">
+                    Password:<input type="password" name="password">
+                    Role:<select type="text" name="role">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+                    Message:<input type="text" name="message"><br/><br/>
+                    <button>Add user</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 </div>
-<div th:if="${list.size() == 0}">
-    <h3>Table is empty!</h3>
-</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
 
 
 </body>
