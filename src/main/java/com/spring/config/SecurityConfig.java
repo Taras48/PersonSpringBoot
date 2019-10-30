@@ -45,8 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/static/**"); // #3
+                .antMatchers("/css/**"); // #3
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
