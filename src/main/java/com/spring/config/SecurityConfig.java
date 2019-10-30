@@ -41,18 +41,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    /*@Override
+    @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**"); // #3
-    }*/
+                .antMatchers("/static/**"); // #3
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-              //  .antMatchers("/static/**").permitAll()
+                .antMatchers("/*.css").permitAll()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/admin/**").hasAuthority("admin")
                 .antMatchers("/user").hasAnyAuthority("admin", "user")
