@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@RestController
+@Controller
 public class MainController {
 
     private UserService service;
@@ -25,19 +25,18 @@ public class MainController {
 
     }
 
-    @GetMapping
-    public ModelAndView getLogin() {
-        ModelAndView modelAndView = new ModelAndView();
+    @GetMapping(value = "/login")
+    public String getLogin() {
+        /*ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/login");
-        return modelAndView;
+        return modelAndView;*/
+        return "/login";
     }
 
     //userGetMapping
     @GetMapping(value = "/user")
-    public ModelAndView getUserPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/user");
-        return modelAndView;
+    public String getUserPage() {
+        return "/user";
     }
 
     //adminPostMapping
@@ -70,10 +69,8 @@ public class MainController {
 
     //adminGetMapping
     @GetMapping(value = "/admin/add")
-    public ModelAndView getAdd() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/addUser");
-        return modelAndView;
+    public String getAdd() {
+        return "admin/addUser";
     }
 
     @GetMapping(value = "/admin")
@@ -84,16 +81,12 @@ public class MainController {
     }
 
     @GetMapping(value = "/admin/update")
-    public ModelAndView updateUsers() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/updateUser");
-        return modelAndView;
+    public String updateUsers() {
+        return "admin/updateUser";
     }
 
     @GetMapping(value = "/admin/delete")
-    public ModelAndView deleteUsers() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/deleteUser");
-        return modelAndView;
+    public String deleteUsers() {
+        return "admin/deleteUser";
     }
 }

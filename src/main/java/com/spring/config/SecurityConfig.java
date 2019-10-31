@@ -2,7 +2,6 @@ package com.spring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -45,15 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/css/**"); // #3
+                .antMatchers("/static/**", "/css/**");
     }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/*.css").permitAll()
+               // .antMatchers("/*.css").permitAll()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/admin/**").hasAuthority("admin")
                 .antMatchers("/user").hasAnyAuthority("admin", "user")
