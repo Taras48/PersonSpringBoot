@@ -14,15 +14,17 @@
 <body>
 <div class="container-fluid">
 
+    <!--Header-->
     <div class="row bg-dark justify-content-between align-self-center">
         <h3 class="ml-5 my-2 page-header text-light">Progect Name</h3>
         <a class="mr-5 my-2 text-light" href="/logout">Logout</a>
     </div>
 
     <div class="row" style="height: 100vh;">
-        <div class="col-2 nav">
+        <!--Nav bar-->
+        <div class="col-2 nav flex-column nav-pills">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="/admin/add" role="tab"
+                <a class="nav-link " id="v-pills-home-tab" data-toggle="pill" href="/admin" role="tab"
                    aria-controls="v-pills-home" aria-selected="true">Admin</a>
                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="/user" role="tab"
                    aria-controls="v-pills-profile" aria-selected="false">User</a>
@@ -82,18 +84,12 @@
 
         </div>
     </div>
+
+
 </div>
 
-<script type="text/javascript">
-    jQuery(document).ready(function(){
 
-        $("row").css('background-color', 'red');
-    });
-</script>
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>4
-
+<!-- Bootstrap-4 -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
@@ -103,7 +99,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-
 
 </body>
 </html>
