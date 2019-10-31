@@ -25,18 +25,15 @@ public class MainController {
 
     }
 
-    @GetMapping(value = "/login")
+    @GetMapping("/login")
     public String getLogin() {
-        /*ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/login");
-        return modelAndView;*/
-        return "/login";
+        return "login";
     }
 
     //userGetMapping
     @GetMapping(value = "/user")
     public String getUserPage() {
-        return "/user";
+        return "user";
     }
 
     //adminPostMapping

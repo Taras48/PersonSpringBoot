@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 
@@ -24,13 +23,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
     }
 
-    @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/templates/");
-        viewResolver.setSuffix(".html");
-        return viewResolver;
-    }
+
 }
 
 
