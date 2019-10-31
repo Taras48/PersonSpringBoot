@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 
-    private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+   private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
             "classpath:/META-INF/resources/", "classpath:/resources/",
             "classpath:/static/"};
 
@@ -24,7 +24,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
 
+
 }
+
 
 
 /* @Override
