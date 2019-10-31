@@ -44,14 +44,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/static/**", "/css/**");
+                .antMatchers(  "/css/**","/js/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-              //  .antMatchers("/static/**", "/css/**").permitAll()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/admin/**").hasAuthority("admin")
                 .antMatchers("/user").hasAnyAuthority("admin", "user")
