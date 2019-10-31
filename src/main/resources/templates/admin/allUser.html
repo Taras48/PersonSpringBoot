@@ -21,66 +21,63 @@
     </div>
 
     <div class="row" style="height: 100vh;">
-        <!--Nav bar-->
-        <div class="col-2 nav flex-column nav-pills">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link " id="v-pills-home-tab" data-toggle="pill" href="/admin" role="tab"
-                   aria-controls="v-pills-home" aria-selected="true">Admin</a>
-                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="/user" role="tab"
-                   aria-controls="v-pills-profile" aria-selected="false">User</a>
-            </div>
+        <!-- Nav bar-->
+        <div class="col-2 p-0 mt-3">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link bg-info text-white rounded-0" href="/admin">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-0" href="/user">User</a>
+                </li>
+            </ul>
         </div>
 
 
-        <div class="col-10">
+        <!-- TABLE-->
+        <div class="col-10 p-5 pt-4 bg-light">
 
             <h1 class="md-3">Admin panel</h1>
 
-            <ul class="nav nav-tabs">
+            <!-- nav table -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#User table">User table</a>
+                    <a class="nav-link active" data-toggle="tab"  role="tab"href="#User Table">User Table</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#New user">New user</a>
+                    <a class="nav-link" data-toggle="tab" role="tab" href="#New User">New User</a>
                 </li>
             </ul>
 
+            <!-- content table -->
             <div class="tab-content">
-                <div id="User table" class="tab-pane fade in active">
-                    <h3>User table</h3>
-                    <div th:if="${list.size() != 0}">
-                        <table border="1px solid black">
-                            <tr>
-                                <td>Id</td>
-                                <td>Name</td>
-                                <td>Message</td>
-                                <td>Password</td>
-                                <td>Role</td>
-                            </tr>
-                            <tr th:each="user : ${list}">
-                                <td th:text="${user.getId()}">Id</td>
-                                <td th:text="${user.getName()}">Name</td>
-                                <td th:text="${user.getMessage()}">Message</td>
-                                <td th:text="${user.getPassword()}">Password</td>
-                                <td th:text="${user.getRoles()}">Role</td>
-                            </tr>
-                        </table>
-                    </div>
+                <div id="User Table" class="tab-pane show active">
+                    <table class="table table-striped">
+                          <h3 class="bg-light p-2 mb-0">  All Users</h3>
+                        <thead class="font-weight-bold">
+                        <tr>
+                            <td>Id</td>
+                            <td>Name</td>
+                            <td>Message</td>
+                            <td>Password</td>
+                            <td>Role</td>
+                        </tr>
+                        </thead>
+                        <tr th:each="user : ${list}">
+                            <td th:text="${user.getId()}">Id</td>
+                            <td th:text="${user.getName()}">Name</td>
+                            <td th:text="${user.getMessage()}">Message</td>
+                            <td th:text="${user.getPassword()}">Password</td>
+                            <td th:text="${user.getRoles()}">Role</td>
+                            <td><button class="btn btn-sm btn-block btn-info">Edit</button></td>
+                        </tr>
+                    </table>
                 </div>
-                <div id="New user" class="tab-pane fade in active">
-                    <h3>New user</h3>
-                    Name:<input type="text" name="name">
-                    Password:<input type="password" name="password">
-                    Role:<select type="text" name="role">
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
-                    Message:<input type="text" name="message"><br/><br/>
-                    <button>Add user</button>
-                    </form>
+                <div id="New User" class="tab-pane fade">
+                    New User
                 </div>
-
             </div>
+
 
         </div>
     </div>
