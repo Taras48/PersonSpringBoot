@@ -6,8 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>AllUsers</title>
 </head>
@@ -42,7 +43,7 @@
             <!-- nav table -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab"  role="tab"href="#User Table">User Table</a>
+                    <a class="nav-link active" data-toggle="tab" role="tab" href="#User Table">User Table</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" role="tab" href="#New User">New User</a>
@@ -53,7 +54,7 @@
             <div class="tab-content">
                 <div id="User Table" class="tab-pane show active">
                     <table class="table table-striped">
-                          <h3 class="bg-light p-2 mb-0">  All Users</h3>
+                        <h3 class="bg-light p-2 mb-0"> All Users</h3>
                         <thead class="font-weight-bold">
                         <tr>
                             <td>Id</td>
@@ -69,27 +70,60 @@
                             <td th:text="${user.getMessage()}">Message</td>
                             <td th:text="${user.getPassword()}">Password</td>
                             <td th:text="${user.getRoles()}">Role</td>
-                            <td><button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#editUser">Edit</button></td>
+                            <td>
+                                <button class="btn btn-sm btn-info" type="button" data-toggle="modal"
+                                        data-target="#editUser">Edit
+                                </button>
+                            </td>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="editUser" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document" >
+                            <div class="modal fade" id="editUser">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Modal Heading</h4>
+                                            <h4 class="modal-title">Edit User Lorem ipsum</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
 
                                         <!-- Modal body -->
                                         <div class="modal-body">
-                                            Modal body..
+                                            <form class="form-control" action="/admin/update" method="post">
+                                                <div class="form-group">
+                                                    <!--<input class="form-control input-lg" type="text" name="name" id="name" placeholder="Email address">-->
+                                                    <p class="font-weight-bold text-center">ID</p>
+                                                    <input class="form-control " id="disabledTextInput" type="number"
+                                                           name="id">
+                                                </div>
+                                                <div class="form-group">
+                                                    <p class="font-weight-bold text-center">Name</p>
+                                                    <input class="form-control input-sm" type="text" name="name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <p class="font-weight-bold text-center">Password</p>
+                                                    <input class="form-control input-sm" type="text" name="password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <p class="font-weight-bold text-center">Role</p>
+                                                    <select class="form-control input-sm" type="text" name="role">
+                                                        <option value="user">User</option>
+                                                        <option value="admin">Admin</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p class="font-weight-bold text-center">Message</p>
+                                                    <input class="form-control input-sm" type="text" name="message">
+                                                </div>
+                                            </form>
                                         </div>
 
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть
+                                            </button>
+                                            <button class="btn btn-lg btn-block btn-info mt-2 form-control">Edit user
+                                            </button>
                                         </div>
 
                                     </div>
@@ -100,9 +134,7 @@
                     </table>
 
 
-
                 </div>
-
 
 
                 <div id="New User" class="tab-pane fade">
@@ -117,16 +149,22 @@
 
 </div>
 
+<script>
+    $(document).ready(function () {
+        $("#editUser").modal('show');
+    });
+</script>
+
 
 <!-- Bootstrap-4 -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
 </body>
