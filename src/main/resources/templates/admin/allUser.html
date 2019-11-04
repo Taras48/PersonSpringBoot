@@ -96,18 +96,18 @@
                                                     <p class="font-weight-bold text-center">ID</p>
                                                     <input id="updateUserId" class="form-control col-xs-3"
                                                            type="number"
-                                                           name="id"> <!--disabled-->
+                                                           name="id">
                                                 </div>
                                                 <div class="form-group col-xs-3">
                                                     <p class="font-weight-bold text-center">Name</p>
                                                     <input id="updateUserName" class="form-control " type="text"
                                                            name="name">
                                                 </div>
-                                                <!--<div class="form-group col-xs-3">
-                                                    <p class="font-weight-bold text-center">Password</p>
+                                                <div class="form-group col-xs-3">
+
                                                     <input id="updateUserPass" class="form-control " type="text"
                                                            name="password">
-                                                </div>-->
+                                                </div>
                                                 <div class="form-group col-xs-3">
                                                     <p class="font-weight-bold text-center">Role</p>
                                                     <select id="updateUserRole" class="form-control " type="text"
@@ -197,15 +197,13 @@
     $(document).ready(function () {
 
         $("tr td .btn").click(function () {
-            /* var row = $(this).closest("tr");*/
-
-            /*  $("#updateUserId").val($(" #tableId").text());*/
 
             $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
 
-            $("#updateUserId").prop("disabled", true);
-
             $("#updateUserName").val($(this).closest("tr").find("#tableName").text());
+
+            $("#updateUserPass").hide();
+            $("#updateUserPass").val($(this).closest("tr").find("#tablePass").text());
 
             var role = $(this).closest("tr").find("#tableRole").text();
             var rol = role.substring(1, role.length - 1).toString();
@@ -215,7 +213,6 @@
             } else {
                 $('#updateUserRole option:contains("user")').prop("selected", true);
             }
-
 
             $("#updateUserMess").val($(this).closest("tr").find("#tableMess").text());
 

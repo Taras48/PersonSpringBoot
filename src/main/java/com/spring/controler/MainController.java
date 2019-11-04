@@ -22,7 +22,6 @@ public class MainController {
     public MainController(UserService service, RoleService roleService) {
         this.service = service;
         this.roleService = roleService;
-
     }
 
     @GetMapping("/login")
@@ -52,7 +51,7 @@ public class MainController {
         upUser.setPassword(user.getPassword());
         upUser.setRoles(roleService.findAllByRoleIsContaining(role));
         upUser.setMessage(user.getMessage());
-        service.saveUser(upUser);
+        service.updateUser(upUser);
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;
     }
