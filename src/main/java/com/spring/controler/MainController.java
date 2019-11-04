@@ -52,7 +52,7 @@ public class MainController {
         upUser.setPassword(user.getPassword());
         upUser.setRoles(roleService.findAllByRoleIsContaining(role));
         upUser.setMessage(user.getMessage());
-        service.saveUser(user);
+        service.saveUser(upUser);
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;
     }

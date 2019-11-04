@@ -58,20 +58,18 @@
                     <table class="table table-striped">
                         <h3 class="bg-gradient-secondary p-2 mb-0"> All Users</h3>
                         <thead class="font-weight-bold">
-                        <tr>
-                            <td>Id</td>
-                            <td>Name</td>
-                            <td>Message</td>
-                            <td>Password</td>
-                            <td>Role</td>
-                        </tr>
+                        <td>Id</td>
+                        <td>Name</td>
+                        <td>Message</td>
+                        <td>Password</td>
+                        <td>Role</td>
                         </thead>
                         <tr th:each="user : ${list}">
-                            <td th:text="${user.getId()}">Id</td>
-                            <td th:text="${user.getName()}">Name</td>
-                            <td th:text="${user.getMessage()}">Message</td>
-                            <td th:text="${user.getPassword()}">Password</td>
-                            <td th:text="${user.getRoles()}">Role</td>
+                            <td id="tableId" th:text="${user.getId()}">Id</td>
+                            <td id="tableName" th:text="${user.getName()}">Name</td>
+                            <td id="tableMess" th:text="${user.getMessage()}">Message</td>
+                            <td id="tablePass" th:text="${user.getPassword()}">Password</td>
+                            <td id="tableRole" th:text="${user.getRoles()}">Role</td>
                             <td>
                                 <button class="btn btn-sm btn-info" type="button" data-toggle="modal"
                                         data-target="#editUser">Edit
@@ -92,32 +90,36 @@
                                         <!-- Modal body -->
                                         <div class="modal-body">
 
-                                            <form id="updateUser" class="mx-auto" style="width: 30%" action="/admin/update" method="post">
+                                            <form id="updateUser" class="mx-auto" style="width: 30%"
+                                                  action="/admin/update" method="post">
                                                 <div class="form-group">
                                                     <p class="font-weight-bold text-center">ID</p>
-                                                    <input class="form-control col-xs-3"
-                                                           id="disabledTextInput"
+                                                    <input id="updateUserId" class="form-control col-xs-3"
                                                            type="number"
-                                                           name="id" disabled>
+                                                           name="id"> <!--disabled-->
                                                 </div>
                                                 <div class="form-group col-xs-3">
                                                     <p class="font-weight-bold text-center">Name</p>
-                                                    <input class="form-control " type="text" name="name">
+                                                    <input id="updateUserName" class="form-control " type="text"
+                                                           name="name">
                                                 </div>
-                                                <div class="form-group col-xs-3">
+                                                <!--<div class="form-group col-xs-3">
                                                     <p class="font-weight-bold text-center">Password</p>
-                                                    <input class="form-control " type="text" name="password">
-                                                </div>
+                                                    <input id="updateUserPass" class="form-control " type="text"
+                                                           name="password">
+                                                </div>-->
                                                 <div class="form-group col-xs-3">
                                                     <p class="font-weight-bold text-center">Role</p>
-                                                    <select class="form-control " type="text" name="role">
-                                                        <option value="user">User</option>
-                                                        <option value="admin">Admin</option>
+                                                    <select id="updateUserRole" class="form-control " type="text"
+                                                            name="role">
+                                                        <option value="user">user</option>
+                                                        <option value="admin">admin</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-xs-3">
                                                     <p class="font-weight-bold text-center">Message</p>
-                                                    <input class="form-control " type="text" name="message">
+                                                    <input id="updateUserMess" class="form-control " type="text"
+                                                           name="message">
                                                 </div>
                                             </form>
 
@@ -125,10 +127,11 @@
 
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button  type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+                                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
                                                 Закрыть
                                             </button>
-                                            <button form="updateUser" type="submit" class="btn btn-sm btn-info">Edit user
+                                            <button form="updateUser" type="submit" class="btn btn-sm btn-info">Edit
+                                                user
                                             </button>
                                         </div>
 
@@ -178,12 +181,6 @@
 
 </div>
 
-<!--<script>
-    $(document).ready(function () {
-        $("#editUser").modal('show');
-    });
-</script>-->
-
 
 <!-- Bootstrap-4 -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -195,6 +192,38 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("tr td .btn").click(function () {
+            /* var row = $(this).closest("tr");*/
+
+            /*  $("#updateUserId").val($(" #tableId").text());*/
+
+            $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
+
+            $("#updateUserId").prop("disabled", true);
+
+            $("#updateUserName").val($(this).closest("tr").find("#tableName").text());
+
+            var role = $(this).closest("tr").find("#tableRole").text();
+            var rol = role.substring(1, role.length - 1).toString();
+            var admin = "admin";
+            if (rol == admin) {
+                $('#updateUserRole option:contains("admin")').prop("selected", true);
+            } else {
+                $('#updateUserRole option:contains("user")').prop("selected", true);
+            }
+
+
+            $("#updateUserMess").val($(this).closest("tr").find("#tableMess").text());
+
+
+        });
+    });
+</script>
+
 
 </body>
 </html>
