@@ -199,6 +199,7 @@
         $("tr td .btn").click(function () {
 
             $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
+            $("#updateUserId").prop("disabled", true);
 
             $("#updateUserName").val($(this).closest("tr").find("#tableName").text());
 

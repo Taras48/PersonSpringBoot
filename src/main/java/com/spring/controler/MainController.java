@@ -1,6 +1,5 @@
 package com.spring.controler;
 
-import com.spring.model.Role;
 import com.spring.model.User;
 import com.spring.service.RoleService;
 import com.spring.service.UserService;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -47,6 +45,7 @@ public class MainController {
     @PostMapping(value = "/admin/update")
     public ModelAndView postUpdate(User user, ModelAndView modelAndView, String role) {
         User upUser = service.getUserById(user.getId());
+
         upUser.setName(user.getName());
         upUser.setPassword(user.getPassword());
         upUser.setRoles(roleService.findAllByRoleIsContaining(role));

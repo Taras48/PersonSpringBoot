@@ -43,12 +43,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if (repository.getUserByName(user.getName()) == null){
         repository.save(user);
+        }
     }
 
     @Override
     public void updateUser(User user) {
-        repository.save(user);
+        List<User> users = repository.findAll();
+        int i = 0;
+        for(User check : users){
+            if(check.getName().equals(user.getName())){
+                i++;
+            }
+        }
+        if(i < 2) {
+            repository.save(user);
+        }
 
     }
 
