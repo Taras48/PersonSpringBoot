@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     $("tr td .btn").click(function () {
-
         $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
         $("#updateUserId").prop("disabled", true);
 
@@ -20,7 +19,38 @@ $(document).ready(function () {
         }
 
         $("#updateUserMess").val($(this).closest("tr").find("#tableMess").text());
-
-
     });
+
+    $("#addUser").click(function () {
+        /*var name = this.closest("input").find("#name");
+        var password = this.closest("input").find("#password");
+        var role = this.closest("input").find("#role");
+        var message = this.closest("input").find("#message");*/
+
+        $.ajax({
+            url: 'http://localhost:8080/admin/add',
+            success: function(){
+                alert('Load was performed.');
+            }
+        });
+
+
+        /*var user = {
+            name: this.closest("input").find("#name"),
+            password: this.closest("input").find("#password"),
+            role: this.closest("input").find("#role"),
+            message: this.closest("input").find("#message")
+        }
+
+        var json = JSON.stringify(user);
+        let request = new XMLHttpRequest();
+
+       // request.open(this.closest("form").attr('method'), this.closest("form").attr('action'));
+        request.open('POST', 'http://localhost:8080/admin/add');
+       // request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        request.send(json);
+
+        alert("qwertyui");*/
+    });
+
 });
