@@ -22,12 +22,12 @@ $(document).ready(function () {
     });
 
     $("#addFormUser").click(function () {
-        /*var name = this.closest("input").find("#name");
+        /*var name = $("#addName").val();
         var password = this.closest("input").find("#password");
         var role = this.closest("input").find("#role");
         var message = this.closest("input").find("#message");*/
 
-        alert('Load was performed.');
+        alert($("#addName").val().text());
        /* alert( "name:"+ this.closest("input").find("#name"),
             "name:"+ this.closest("input").find("#password"),
             "name:"+  this.closest("input").find("#role"),
