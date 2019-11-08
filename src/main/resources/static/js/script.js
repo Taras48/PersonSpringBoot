@@ -21,18 +21,26 @@ $(document).ready(function () {
         $("#updateUserMess").val($(this).closest("tr").find("#tableMess").text());
     });
 
-    $("#addUser").click(function () {
+    $("#addFormUser").click(function () {
         /*var name = this.closest("input").find("#name");
         var password = this.closest("input").find("#password");
         var role = this.closest("input").find("#role");
         var message = this.closest("input").find("#message");*/
 
-        $.ajax({
-            url: 'http://localhost:8080/admin/add',
+        alert('Load was performed.');
+       /* alert( "name:"+ this.closest("input").find("#name"),
+            "name:"+ this.closest("input").find("#password"),
+            "name:"+  this.closest("input").find("#role"),
+            "name:"+  this.closest("input").find("#message"),
+            this.closest("form").attr('method'),
+            this.closest("form").attr('action'));*/
+
+       /* $.ajax({
+            url: '/admin/add',
             success: function(){
                 alert('Load was performed.');
             }
-        });
+        });*/
 
 
         /*var user = {
