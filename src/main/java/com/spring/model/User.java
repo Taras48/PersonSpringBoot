@@ -28,10 +28,11 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String password, String message) {
+    public User(String name, String password, String message,String role) {
         this.name = name;
         this.password = password;
         this.message = message;
+        this.roles.add(new Role(role));
     }
 
     @Override
@@ -95,6 +96,10 @@ public class User implements UserDetails {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setRoles(String role) {
+        roles.add(new Role(role));
     }
 
     public void setRoles(Role role) {

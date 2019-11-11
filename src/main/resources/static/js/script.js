@@ -31,7 +31,7 @@ $(document).ready(function () {
         var user = {
             'name': $("#addName").val(),
             'password': $("#addPassword").val(),
-          //  'role': $("#addRole").val(),
+           'role': $("#addRole").val(),
             'message': $("#addMessage").val()
         };
 
@@ -51,7 +51,7 @@ $(document).ready(function () {
             type: 'POST',
             url: "/admin/add",
 
-            contentType: 'application/json; charset=utf-8',
+            contentType: 'application/json;',
             data: JSON.stringify(user),
             headers: {
                 'Accept': 'application/json',
@@ -59,13 +59,13 @@ $(document).ready(function () {
             },
             async: true,
             cache: false,
-            dataType: 'JSON'
-            /*success: function () {
-                alert( "uesr is add");
+            dataType: 'JSON',
+           success: function () {
+                location.reload();
             },
-            error: function (e) {
-                alert( "Error add");
-            }*/
+            /*error: function (e) {
+               alert( "Error add");
+           }*/
 
         });
 

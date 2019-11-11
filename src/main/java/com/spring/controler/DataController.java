@@ -31,7 +31,7 @@ public class DataController {
 
     //@PostMapping(value = "/admin/add")
     @RequestMapping(value = "/admin/add", method = RequestMethod.POST)
-    public void postAdd(@RequestParam User name) {
+    public void postAdd(@RequestBody User name) {
         /*User user = new User();
         user.setName(request.getParameter("name"));
         user.setPassword(request.getParameter("password"));
