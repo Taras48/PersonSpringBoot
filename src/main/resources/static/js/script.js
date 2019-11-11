@@ -21,44 +21,92 @@ $(document).ready(function () {
         $("#updateUserMess").val($(this).closest("tr").find("#tableMess").text());
     });
 
-    $("#addFormUser").click(function () {
-        /*var name = $("#addName").val();
-        var password = this.closest("input").find("#password");
-        var role = this.closest("input").find("#role");
-        var message = this.closest("input").find("#message");*/
-
-        alert($("#addName").val().text());
-       /* alert( "name:"+ this.closest("input").find("#name"),
-            "name:"+ this.closest("input").find("#password"),
-            "name:"+  this.closest("input").find("#role"),
-            "name:"+  this.closest("input").find("#message"),
-            this.closest("form").attr('method'),
-            this.closest("form").attr('action'));*/
-
-       /* $.ajax({
-            url: '/admin/add',
-            success: function(){
-                alert('Load was performed.');
-            }
-        });*/
-
-
-        /*var user = {
-            name: this.closest("input").find("#name"),
-            password: this.closest("input").find("#password"),
-            role: this.closest("input").find("#role"),
-            message: this.closest("input").find("#message")
-        }
-
-        var json = JSON.stringify(user);
-        let request = new XMLHttpRequest();
-
-       // request.open(this.closest("form").attr('method'), this.closest("form").attr('action'));
-        request.open('POST', 'http://localhost:8080/admin/add');
-       // request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        request.send(json);
-
-        alert("qwertyui");*/
+    $("#addFormUser").click(function (event) {
+        event.preventDefault();
+        addForm();
     });
+
+    function addForm() {
+
+        var user = {
+            'name': $("#addName").val(),
+            'password': $("#addPassword").val(),
+          //  'role': $("#addRole").val(),
+            'message': $("#addMessage").val()
+        };
+
+        /*var role = {'role': $("#addRole").val()};
+
+        var userData = JSON.stringify(user);
+        var formData = new FormData(role);
+
+        formData.append("user", userData);*/
+
+
+        $("#submitButton").prop("disabled", true);
+
+
+        $.ajax({
+
+            type: 'POST',
+            url: "/admin/add",
+
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(user),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            async: true,
+            cache: false,
+            dataType: 'JSON'
+            /*success: function () {
+                alert( "uesr is add");
+            },
+            error: function (e) {
+                alert( "Error add");
+            }*/
+
+        });
+
+    };
+
+
+    //Спросить на ревью почему сразу в кнопке нельзя описать что она должна делать
+    //почему возвращает неопределеную строку
+    /*function sendDataForm() {
+
+        //var url = $(this).parent().attr("action");
+
+        var url = $(this).closest("form").attr("action");
+
+        alert(url);
+    };*/
+
+    /*$("#addFormUser").submit(function(event) {
+
+        event.preventDefault();
+
+       /!* var name = $("#addName").val();
+        var password = $("#addPassword").val();
+        var role = $("#addRole").val();
+        var message = $("#addMessage").val();*!/
+
+        alert("PROVERKA  " );
+
+        /!*$.ajax({
+            url: "/admin/add",
+            type: "POST",
+            data: (name),
+            success:function (resp) {
+                alert(resp.toString());
+            },
+            error: function (resp) {
+                alert("Error sending user");
+            }
+        })*!/
+
+
+    });*/
 
 });

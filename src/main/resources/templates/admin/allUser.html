@@ -143,11 +143,11 @@
                     </table>
                 </div>
 
-                   <!-- ADD USER-->
+                <!-- ADD USER-->
 
                 <div id="NewUser" class="tab-pane fade " role="tabpanel">
                     <h3 class="bg-gradient-secondary p-2 mb-0"> Add new user</h3>
-                    <form class="mx-auto" style="width: 30%" >
+                    <form id="addForm" class="mx-auto" style="width: 30%">
 
                         <div class="form-group col-xs-3">
                             <p class="font-weight-bold text-center">Name</p>
@@ -155,18 +155,20 @@
                         </div>
                         <div class="form-group col-xs-3">
                             <p class="font-weight-bold text-center">Password</p>
-                            <input class="form-control" type="text" name="password" placeholder="password">
+                            <input class="form-control" type="text" name="password" id="addPassword"
+                                   placeholder="password">
                         </div>
                         <div class="form-group col-xs-3">
                             <p class="font-weight-bold text-center">Role</p>
-                            <select class="form-control" type="text" name="role" placeholder="role">+
+                            <select class="form-control" type="text" name="role" id="addRole" placeholder="role">+
                                 <option value="user">User</option>
                                 <option value="admin">Admin</option>
                             </select>
                         </div>
                         <div class="form-group col-xs-3">
                             <p class="font-weight-bold text-center">Message</p>
-                            <input class="form-control" type="text" name="message" placeholder="message">
+                            <input class="form-control" type="text" name="message" id="addMessage"
+                                   placeholder="message">
                         </div>
                         <button type="submit" class="btn btn-sm btn-success center-block" id="addFormUser">Edit user
                         </button>
@@ -184,8 +186,9 @@
 
 
 <!-- Bootstrap-4 -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
