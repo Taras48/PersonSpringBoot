@@ -54,7 +54,7 @@
             <!-- content table -->
             <div class="tab-content" id="myTabContent">
 
-                <div id="UserTable" class="tab-pane show active" role="tabpanel">
+                <div th:attr="data-list = ${list}" id="UserTable" class="tab-pane show active" role="tabpanel">
                     <table class="table table-striped">
                         <h3 class="bg-gradient-secondary p-2 mb-0"> All Users</h3>
                         <thead class="font-weight-bold">
@@ -64,7 +64,7 @@
                         <td>Password</td>
                         <td>Role</td>
                         </thead>
-                        <tr th:each="user : ${list}">
+                        <tr id="list" th:each="user : ${list}">
                             <td id="tableId" th:text="${user.getId()}">Id</td>
                             <td id="tableName" th:text="${user.getName()}">Name</td>
                             <td id="tableMess" th:text="${user.getMessage()}">Message</td>
@@ -90,8 +90,7 @@
                                         <!-- Modal body -->
                                         <div class="modal-body">
 
-                                            <form id="updateUser" class="mx-auto" style="width: 30%"
-                                                  action="/admin/update" method="post">
+                                            <form id="updateUser" class="mx-auto" style="width: 30%">
                                                 <div class="form-group">
                                                     <p class="font-weight-bold text-center">ID</p>
                                                     <input id="updateUserId" class="form-control col-xs-3"
@@ -127,7 +126,7 @@
 
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+                                            <button id="updateFormUser"  type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
                                                 Закрыть
                                             </button>
                                             <button form="updateUser" type="submit" class="btn btn-sm btn-info">Edit
@@ -160,7 +159,7 @@
                         </div>
                         <div class="form-group col-xs-3">
                             <p class="font-weight-bold text-center">Role</p>
-                            <select class="form-control" type="text" name="role" id="addRole" placeholder="role">+
+                            <select class="form-control" type="text" name="role" id="addRole" placeholder="role">
                                 <option value="user">User</option>
                                 <option value="admin">Admin</option>
                             </select>

@@ -28,12 +28,12 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String password, String message,String role) {
+    /*public User(String name, String password, String message,String role) {
         this.name = name;
         this.password = password;
         this.message = message;
-        this.roles.add(new Role(role));
-    }
+        roles.add(new Role(role));
+    }*/
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

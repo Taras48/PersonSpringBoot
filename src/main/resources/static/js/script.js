@@ -1,5 +1,25 @@
 $(document).ready(function () {
 
+   // alert("test 1 ");
+
+    $.ajax({
+        type: 'GET',
+        url: "/admin/all",
+
+        contentType: 'application/json;',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        async: true,
+        cache: false,
+        dataType: 'JSON',
+        success:function (listUsers) {
+            $("#UserTable").data(listUsers);
+        }
+
+    });
+
     $("tr td .btn").click(function () {
         $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
         $("#updateUserId").prop("disabled", true);
@@ -24,6 +44,7 @@ $(document).ready(function () {
     $("#addFormUser").click(function (event) {
         event.preventDefault();
         addForm();
+        $("#addForm").refresh();
     });
 
     function addForm() {
@@ -31,20 +52,11 @@ $(document).ready(function () {
         var user = {
             'name': $("#addName").val(),
             'password': $("#addPassword").val(),
-           'role': $("#addRole").val(),
+            'role': $("#addRole").val(),
             'message': $("#addMessage").val()
         };
 
-        /*var role = {'role': $("#addRole").val()};
-
-        var userData = JSON.stringify(user);
-        var formData = new FormData(role);
-
-        formData.append("user", userData);*/
-
-
         $("#submitButton").prop("disabled", true);
-
 
         $.ajax({
 
@@ -60,53 +72,47 @@ $(document).ready(function () {
             async: true,
             cache: false,
             dataType: 'JSON',
-           success: function () {
-                location.reload();
-            },
-            /*error: function (e) {
-               alert( "Error add");
-           }*/
 
         });
 
     };
 
-
-    //Спросить на ревью почему сразу в кнопке нельзя описать что она должна делать
-    //почему возвращает неопределеную строку
-    /*function sendDataForm() {
-
-        //var url = $(this).parent().attr("action");
-
-        var url = $(this).closest("form").attr("action");
-
-        alert(url);
-    };*/
-
-    /*$("#addFormUser").submit(function(event) {
-
+    $("#updateFormUser").click(function (event) {
         event.preventDefault();
+        updateForm();
+        $("#updateUser").refresh();
+    });
 
-       /!* var name = $("#addName").val();
-        var password = $("#addPassword").val();
-        var role = $("#addRole").val();
-        var message = $("#addMessage").val();*!/
+    function updateForm() {
 
-        alert("PROVERKA  " );
+        var user = {
+            'id': $("#updateUserId").val(),
+            'name': $("#updateUserName").val(),
+            'password': $("#updateUserPass").val(),
+            'role': $("#updateUserRole").val(),
+            'message': $("#updateUserMess").val()
+        };
 
-        /!*$.ajax({
-            url: "/admin/add",
-            type: "POST",
-            data: (name),
-            success:function (resp) {
-                alert(resp.toString());
+        $("#submitButton").prop("disabled", true);
+
+        $.ajax({
+
+            type: 'PUT',
+            url: "/admin/update",
+
+            contentType: 'application/json;',
+            data: JSON.stringify(user),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
-            error: function (resp) {
-                alert("Error sending user");
-            }
-        })*!/
+            async: true,
+            cache: false,
+            dataType: 'JSON',
 
+        });
 
-    });*/
+    };
+
 
 });
