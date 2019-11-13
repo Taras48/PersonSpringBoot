@@ -1,8 +1,6 @@
 package com.spring.model;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,11 +16,13 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String role;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    /*@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> user = new HashSet<User>();
+            inverseJoinColumns = @JoinColumn(name = "user_id"))*/
+
+    /*@ManyToMany(mappedBy = "roles")
+    private Set<User> user = new HashSet<User>();*/
 
     public Role() {
     }
@@ -47,13 +47,13 @@ public class Role implements GrantedAuthority {
         this.role = role;
     }
 
-    public Set<User> getUser() {
+    /*public Set<User> getUser() {
         return user;
     }
 
     public void setUser(Set<User> user) {
         this.user = user;
-    }
+    }*/
 
     @Override
     public String toString() {

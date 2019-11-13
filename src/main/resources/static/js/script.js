@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-   // alert("test 1 ");
+    // alert("test 1 ");
 
     $.ajax({
         type: 'GET',
@@ -14,8 +14,8 @@ $(document).ready(function () {
         async: true,
         cache: false,
         dataType: 'JSON',
-        success:function (listUsers) {
-            $("#UserTable").data(listUsers);
+        success: function (listUsers) {
+           alert(JSON.stringify(listUsers));
         }
 
     });

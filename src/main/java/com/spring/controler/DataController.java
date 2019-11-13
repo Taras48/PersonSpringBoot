@@ -5,8 +5,9 @@ import com.spring.model.User;
 import com.spring.service.RoleService;
 import com.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -24,11 +25,12 @@ public class DataController {
     }
 
     @GetMapping(value = "/all")
-    public ModelAndView getAllUsers() {
+    public @ResponseBody List<User> getAllUsers() {
         List<User> list = service.findAll();
-        ModelAndView model = new ModelAndView();
-        model.addObject("list",list);
-        return model;
+       /* ModelAndView model = new ModelAndView();
+        model.addObject("list",list);*/
+       // return new ResponseEntity(list, HttpStatus.OK);
+       return list;
     }
 
     @PostMapping(value = "/add")
