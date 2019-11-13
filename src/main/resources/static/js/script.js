@@ -1,3 +1,38 @@
+/*
+
+getTable();
+function getTable() {
+    $.ajax({
+        type: 'GET',
+        url: "/admin/all",
+
+        contentType: 'application/json;',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        async: true,
+        cache: false,
+        dataType: 'JSON',
+        success: function (listUsers) {
+            var htmlTable = "";
+            for (var i = 0; i < listUsers.length; i++) {
+                htmlTable += ('<tr id="list">');
+                htmlTable += ('<td id="tableId">' + listUsers[i].id + '</td>');
+                htmlTable += ('<td id="tableName">' + listUsers[i].name + '</td>');
+                htmlTable += ('<td id="tableMess">' + listUsers[i].message + '</td>');
+                htmlTable += ('<td id="tablePass">' + listUsers[i].password + '</td>');
+                htmlTable += ('<td id="tableRole">' + listUsers[i].roles[0].role + '</td>');
+                htmlTable += ('<td><button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#editUser">Edit</button></td>');
+                htmlTable += ('</tr>');
+            }
+            $("#getUserTable thead").after(htmlTable);
+        }
+
+    });
+};
+*/
+
 $(document).ready(function () {
 
     getTable();
@@ -22,8 +57,8 @@ $(document).ready(function () {
                     htmlTable += ('<tr id="list">');
                     htmlTable += ('<td id="tableId">' + listUsers[i].id + '</td>');
                     htmlTable += ('<td id="tableName">' + listUsers[i].name + '</td>');
-                    htmlTable += ('<td id="tableMess>' + listUsers[i].message + '</td>');
-                    htmlTable += ('<td id="tablePass>' + listUsers[i].password + '</td>');
+                    htmlTable += ('<td id="tableMess">' + listUsers[i].message + '</td>');
+                    htmlTable += ('<td id="tablePass">' + listUsers[i].password + '</td>');
                     htmlTable += ('<td id="tableRole">' + listUsers[i].roles[0].role + '</td>');
                     htmlTable += ('<td><button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#editUser">Edit</button></td>');
                     htmlTable += ('</tr>');
@@ -34,9 +69,9 @@ $(document).ready(function () {
         });
     };
 
-    $("tr td .btn").click(function () {
+    $("#getUserTable .btn").click(function () {
 
-        alert("ertyui");
+        alert("test");
 
         $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
         $("#updateUserId").prop("disabled", true);
