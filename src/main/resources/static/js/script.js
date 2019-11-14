@@ -38,8 +38,8 @@ $(document).ready(function () {
 
         alert("test");
 
-        $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
-        $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
+      $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
+
 
         $("#updateUserId").prop("disabled", true);
 
