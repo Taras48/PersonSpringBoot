@@ -25,7 +25,7 @@ $(document).ready(function () {
                     htmlTable += ('<td id="tableMess>' + listUsers[i].message + '</td>');
                     htmlTable += ('<td id="tablePass>' + listUsers[i].password + '</td>');
                     htmlTable += ('<td id="tableRole">' + listUsers[i].roles[0].role + '</td>');
-                    htmlTable += ('<td><button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#editUser">Edit</button></td>');
+                    htmlTable += ('<td><button id="editUser" class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#editUser">Edit</button></td>');
                     htmlTable += ('</tr>');
                 }
                 $("#getUserTable thead").after(htmlTable);
@@ -34,11 +34,13 @@ $(document).ready(function () {
         });
     };
 
-    $("tr td .btn").click(function () {
+    $("#editUser").click(function () {
 
-        alert("ertyui");
+        alert("test");
 
         $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
+        $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
+
         $("#updateUserId").prop("disabled", true);
 
         $("#updateUserName").val($(this).closest("tr").find("#tableName").text());
@@ -73,7 +75,7 @@ $(document).ready(function () {
             'message': $("#addMessage").val()
         };
 
-        $("#submitButton").prop("disabled", true);
+        $("#addFormUser").prop("disabled", true);
 
         $.ajax({
 
@@ -92,12 +94,13 @@ $(document).ready(function () {
 
         });
 
+
     };
 
     $("#updateFormUser").click(function (event) {
         event.preventDefault();
         updateForm();
-        $("#updateUser").refresh();
+        $("#updateUser").reset();
     });
 
     function updateForm() {
@@ -110,7 +113,7 @@ $(document).ready(function () {
             'message': $("#updateUserMess").val()
         };
 
-        $("#submitButton").prop("disabled", true);
+        $("#updateFormUser").prop("disabled", true);
 
         $.ajax({
 
@@ -128,6 +131,7 @@ $(document).ready(function () {
             dataType: 'JSON',
 
         });
+
 
     };
 
