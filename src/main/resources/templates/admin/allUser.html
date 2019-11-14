@@ -65,83 +65,6 @@
                         <td>Role</td>
                         </thead>
 
-                        <!-- <tr id="list" th:each="user : ${list}">
-                             <td id="tableId" th:text="${user.getId()}">Id</td>
-                             <td id="tableName" th:text="${user.getName()}">Name</td>
-                             <td id="tableMess" th:text="${user.getMessage()}">Message</td>
-                             <td id="tablePass" th:text="${user.getPassword()}">Password</td>
-                             <td id="tableRole" th:text="${user.getRoles()}">Role</td>
-                             <td>
-                                 <button class="btn btn-sm btn-info" type="button" data-toggle="modal"
-                                         data-target="#editUser">Edit
-                                 </button>
-                             </td>
-
-                            &lt;!&ndash; &lt;!&ndash; Modal &ndash;&gt;
-                             <div class="modal fade" id="editUser">
-                                 <div class="modal-dialog">
-                                     <div class="modal-content">
-
-                                         &lt;!&ndash; Modal Header &ndash;&gt;
-                                         <div class="modal-header">
-                                             <h4 class="modal-title">Edit User Lorem ipsum</h4>
-                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                         </div>
-
-                                         &lt;!&ndash; Modal body &ndash;&gt;
-                                         <div class="modal-body">
-
-                                             <form id="updateUser" class="mx-auto" style="width: 30%">
-                                                 <div class="form-group">
-                                                     <p class="font-weight-bold text-center">ID</p>
-                                                     <input id="updateUserId" class="form-control col-xs-3"
-                                                            type="number"
-                                                            name="id">
-                                                 </div>
-                                                 <div class="form-group col-xs-3">
-                                                     <p class="font-weight-bold text-center">Name</p>
-                                                     <input id="updateUserName" class="form-control " type="text"
-                                                            name="name">
-                                                 </div>
-                                                 <div class="form-group col-xs-3">
-
-                                                     <input id="updateUserPass" class="form-control " type="text"
-                                                            name="password">
-                                                 </div>
-                                                 <div class="form-group col-xs-3">
-                                                     <p class="font-weight-bold text-center">Role</p>
-                                                     <select id="updateUserRole" class="form-control " type="text"
-                                                             name="role">
-                                                         <option value="user">user</option>
-                                                         <option value="admin">admin</option>
-                                                     </select>
-                                                 </div>
-                                                 <div class="form-group col-xs-3">
-                                                     <p class="font-weight-bold text-center">Message</p>
-                                                     <input id="updateUserMess" class="form-control " type="text"
-                                                            name="message">
-                                                 </div>
-                                             </form>
-
-                                         </div>
-
-                                         &lt;!&ndash; Modal footer &ndash;&gt;
-                                         <div class="modal-footer">
-                                             <button id="updateFormUser" type="button" class="btn btn-sm btn-secondary"
-                                                     data-dismiss="modal">
-                                                 Закрыть
-                                             </button>
-                                             <button form="updateUser" type="submit" class="btn btn-sm btn-info">Edit
-                                                 user
-                                             </button>
-                                         </div>
-
-                                     </div>
-                                 </div>
-                             </div>&ndash;&gt;
-
-                         </tr>-->
-
 
                         <!-- Modal -->
                         <div class="modal fade" id="editUser">
@@ -193,11 +116,11 @@
 
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <button id="updateFormUser" type="button" class="btn btn-sm btn-secondary"
+                                        <button type="button" class="btn btn-sm btn-secondary"
                                                 data-dismiss="modal">
                                             Закрыть
                                         </button>
-                                        <button form="updateUser" type="submit" class="btn btn-sm btn-info">Edit
+                                        <button id="updateFormUser" form="updateUser" type="submit" class="btn btn-sm btn-info">Edit
                                             user
                                         </button>
                                     </div>
@@ -295,6 +218,85 @@ script for test
         });
     });
 </script>-->
+
+
+<!-- <tr id="list" th:each="user : ${list}">
+     <td id="tableId" th:text="${user.getId()}">Id</td>
+     <td id="tableName" th:text="${user.getName()}">Name</td>
+     <td id="tableMess" th:text="${user.getMessage()}">Message</td>
+     <td id="tablePass" th:text="${user.getPassword()}">Password</td>
+     <td id="tableRole" th:text="${user.getRoles()}">Role</td>
+     <td>
+         <button class="btn btn-sm btn-info" type="button" data-toggle="modal"
+                 data-target="#editUser">Edit
+         </button>
+     </td>
+
+    &lt;!&ndash; &lt;!&ndash; Modal &ndash;&gt;
+     <div class="modal fade" id="editUser">
+         <div class="modal-dialog">
+             <div class="modal-content">
+
+                 &lt;!&ndash; Modal Header &ndash;&gt;
+                 <div class="modal-header">
+                     <h4 class="modal-title">Edit User Lorem ipsum</h4>
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 </div>
+
+                 &lt;!&ndash; Modal body &ndash;&gt;
+                 <div class="modal-body">
+
+                     <form id="updateUser" class="mx-auto" style="width: 30%">
+                         <div class="form-group">
+                             <p class="font-weight-bold text-center">ID</p>
+                             <input id="updateUserId" class="form-control col-xs-3"
+                                    type="number"
+                                    name="id">
+                         </div>
+                         <div class="form-group col-xs-3">
+                             <p class="font-weight-bold text-center">Name</p>
+                             <input id="updateUserName" class="form-control " type="text"
+                                    name="name">
+                         </div>
+                         <div class="form-group col-xs-3">
+
+                             <input id="updateUserPass" class="form-control " type="text"
+                                    name="password">
+                         </div>
+                         <div class="form-group col-xs-3">
+                             <p class="font-weight-bold text-center">Role</p>
+                             <select id="updateUserRole" class="form-control " type="text"
+                                     name="role">
+                                 <option value="user">user</option>
+                                 <option value="admin">admin</option>
+                             </select>
+                         </div>
+                         <div class="form-group col-xs-3">
+                             <p class="font-weight-bold text-center">Message</p>
+                             <input id="updateUserMess" class="form-control " type="text"
+                                    name="message">
+                         </div>
+                     </form>
+
+                 </div>
+
+                 &lt;!&ndash; Modal footer &ndash;&gt;
+                 <div class="modal-footer">
+                     <button id="updateFormUser" type="button" class="btn btn-sm btn-secondary"
+                             data-dismiss="modal">
+                         Закрыть
+                     </button>
+                     <button form="updateUser" type="submit" class="btn btn-sm btn-info">Edit
+                         user
+                     </button>
+                 </div>
+
+             </div>
+         </div>
+     </div>&ndash;&gt;
+
+ </tr>-->
+
 
 
 </body>
