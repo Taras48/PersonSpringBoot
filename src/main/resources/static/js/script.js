@@ -23,7 +23,6 @@ $(document).ready(function () {
                     htmlTable += ('<td id="tableId">' + listUsers[i].id + '</td>');
                     htmlTable += ('<td id="tableName">' + listUsers[i].name + '</td>');
                     htmlTable += ('<td id="tableMess">' + listUsers[i].message + '</td>');
-                    alert(listUsers[i].message );
                     htmlTable += ('<td id="tablePass">' + listUsers[i].password + '</td>');
                     htmlTable += ('<td id="tableRole">' + listUsers[i].roles[0].role + '</td>');
                     htmlTable += ('<td><button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#editUser">Edit</button></td>');
@@ -62,82 +61,80 @@ $(document).ready(function () {
     });
 
 
+    $("#addFormUser").click(function (event) {
+        event.preventDefault();
+        addForm();
+        $(':input', '#addForm').val('');
+    });
+
+    function addForm() {
+
+        var user = {
+            'name': $("#addName").val(),
+            'password': $("#addPassword").val(),
+            'role': $("#addRole").val(),
+            'message': $("#addMessage").val()
+        };
+
+        $("#addFormUser").prop("disabled", true);
+
+        $.ajax({
+
+            type: 'POST',
+            url: "/admin/add",
+
+            contentType: 'application/json;',
+            data: JSON.stringify(user),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            async: true,
+            cache: false,
+            dataType: 'JSON',
+
+        });
 
 
-     $("#addFormUser").click(function (event) {
-         event.preventDefault();
-         addForm();
-         $(':input','#addForm').val('');
-     });
+    };
 
-     function addForm() {
+    $("#updateFormUser").click(function (event) {
+        event.preventDefault();
+        updateForm();
+        $("#updateUser").reset();
+    });
 
-         var user = {
-             'name': $("#addName").val(),
-             'password': $("#addPassword").val(),
-             'role': $("#addRole").val(),
-             'message': $("#addMessage").val()
-         };
+    function updateForm() {
 
-         $("#addFormUser").prop("disabled", true);
+        var user = {
+            'id': $("#updateUserId").val(),
+            'name': $("#updateUserName").val(),
+            'password': $("#updateUserPass").val(),
+            'role': $("#updateUserRole").val(),
+            'message': $("#updateUserMess").val()
+        };
 
-         $.ajax({
+        $("#updateFormUser").prop("disabled", true);
 
-             type: 'POST',
-             url: "/admin/add",
+        $.ajax({
 
-             contentType: 'application/json;',
-             data: JSON.stringify(user),
-             headers: {
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-             },
-             async: true,
-             cache: false,
-             dataType: 'JSON',
+            type: 'PUT',
+            url: "/admin/update",
 
-         });
+            contentType: 'application/json;',
+            data: JSON.stringify(user),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            async: true,
+            cache: false,
+            dataType: 'JSON',
 
-
-     };
-
-     $("#updateFormUser").click(function (event) {
-         event.preventDefault();
-         updateForm();
-         $("#updateUser").reset();
-     });
-
-     function updateForm() {
-
-         var user = {
-             'id': $("#updateUserId").val(),
-             'name': $("#updateUserName").val(),
-             'password': $("#updateUserPass").val(),
-             'role': $("#updateUserRole").val(),
-             'message': $("#updateUserMess").val()
-         };
-
-         $("#updateFormUser").prop("disabled", true);
-
-         $.ajax({
-
-             type: 'PUT',
-             url: "/admin/update",
-
-             contentType: 'application/json;',
-             data: JSON.stringify(user),
-             headers: {
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-             },
-             async: true,
-             cache: false,
-             dataType: 'JSON',
-
-         });
+        });
 
 
-     };
+    };
 
 
 });
