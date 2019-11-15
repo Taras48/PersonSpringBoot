@@ -46,4 +46,15 @@ public class JsonUser {
     public void setRole(String role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "JsonUser{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", message='" + message + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

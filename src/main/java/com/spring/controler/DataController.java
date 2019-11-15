@@ -46,6 +46,7 @@ public class DataController {
 
     @PutMapping(value = "/update")
     public void putUpdateUser(@RequestBody JsonUser jsonUser) {
+        jsonUser.toString();
         User upUser = service.getUserById(jsonUser.getId());
         upUser.setName(jsonUser.getName());
         upUser.setPassword(jsonUser.getPassword());
@@ -54,7 +55,7 @@ public class DataController {
         service.updateUser(upUser);
     }
 
-    @DeleteMapping(value = "/delete")
+    @PostMapping(value = "/delete")
     public void deleteUser(@RequestBody Long id) {
         service.deleteUser(id);
     }

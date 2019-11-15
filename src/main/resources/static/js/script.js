@@ -4,6 +4,7 @@ $(document).ready(function () {
 
     //from table
     function getTable() {
+        $("#UserTable #list").remove();
         $.ajax({
             type: 'GET',
             url: "/admin/all",
@@ -27,6 +28,7 @@ $(document).ready(function () {
                     htmlTable += ('<td id="tableRole">' + listUsers[i].roles[0].role + '</td>');
                     htmlTable += ('<td><button id="editUserBtn"  class="btn btn-sm btn-info" type="button" data-toggle="modal"' +
                         ' data-target="#editUser">Edit</button></td>');
+                    htmlTable += ('<td><button id="deleteUser" class="btn btn-sm btn-info" type="button">Delete</button></td>');
                     htmlTable += ('</tr>');
                 }
                 $("#getUserTable thead").after(htmlTable);
@@ -35,7 +37,7 @@ $(document).ready(function () {
         });
     };
 
-    //modal form
+       //modal form
     $(document).on('click', '#editUserBtn', function () {
 
         $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
@@ -74,7 +76,7 @@ $(document).ready(function () {
             'message': $("#addMessage").val()
         };
 
-        $("#addFormUser").prop("disabled", true);
+        // $("#addFormUser").prop("disabled", true);
 
         $.ajax({
 
@@ -96,19 +98,18 @@ $(document).ready(function () {
 
     };
 
- /*   $(document).on('click', '#updateFormUser', function (event){
-        event.preventDefault();
-        updateForm();
-        $("#editUser").modal('toggle');
-        $("tr").remove();
-        getTable()
-    });*/
+    /* $(document).on('click', '#updateFormUser', function (event){
+         event.preventDefault();
+         updateForm();
+         $("#editUser").modal('toggle');
+         $("#UserTable #list").remove();
+         getTable();
+     });*/
 
     $("#updateFormUser").click(function (event) {
         event.preventDefault();
         updateForm();
         $("#editUser").modal('toggle');
-        $("tr").remove();
         getTable();
     });
 
@@ -140,6 +141,39 @@ $(document).ready(function () {
 
 
     };
+
+
+    $(document).on('click', '#deleteUser', function () {
+        var id = $(this).closest("tr").find("#tableId").text();
+        deleteUser(id);
+        getTable();
+    });
+
+    function deleteUser(id) {
+
+        $.ajax({
+
+            type: 'post',
+            url: "/admin/delete",
+
+            contentType: 'application/json;',
+            data: JSON.stringify(id),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            async: true,
+            cache: false,
+            dataType: 'JSON',
+
+        });
+
+
+    };
+
+    $("#home-tab").click(function () {
+        getTable();
+    });
 
 
 });
