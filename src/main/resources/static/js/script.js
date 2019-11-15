@@ -25,7 +25,8 @@ $(document).ready(function () {
                     htmlTable += ('<td id="tableMess">' + listUsers[i].message + '</td>');
                     htmlTable += ('<td id="tablePass">' + listUsers[i].password + '</td>');
                     htmlTable += ('<td id="tableRole">' + listUsers[i].roles[0].role + '</td>');
-                    htmlTable += ('<td><button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#editUser">Edit</button></td>');
+                    htmlTable += ('<td><button id="editUserBtn"  class="btn btn-sm btn-info" type="button" data-toggle="modal"' +
+                        ' data-target="#editUser">Edit</button></td>');
                     htmlTable += ('</tr>');
                 }
                 $("#getUserTable thead").after(htmlTable);
@@ -34,9 +35,8 @@ $(document).ready(function () {
         });
     };
 
-    $("tr td .btn").click(function () {
-
-        alert("test");
+    //modal form
+    $(document).on('click', '#editUserBtn', function () {
 
         $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
 
@@ -49,9 +49,8 @@ $(document).ready(function () {
         $("#updateUserPass").val($(this).closest("tr").find("#tablePass").text());
 
         var role = $(this).closest("tr").find("#tableRole").text();
-        var rol = role.substring(1, role.length - 1).toString();
         var admin = "admin";
-        if (rol == admin) {
+        if (role == admin) {
             $('#updateUserRole option:contains("admin")').prop("selected", true);
         } else {
             $('#updateUserRole option:contains("user")').prop("selected", true);
@@ -59,7 +58,6 @@ $(document).ready(function () {
 
         $("#updateUserMess").val($(this).closest("tr").find("#tableMess").text());
     });
-
 
     $("#addFormUser").click(function (event) {
         event.preventDefault();
@@ -98,14 +96,23 @@ $(document).ready(function () {
 
     };
 
+ /*   $(document).on('click', '#updateFormUser', function (event){
+        event.preventDefault();
+        updateForm();
+        $("#editUser").modal('toggle');
+        $("tr").remove();
+        getTable()
+    });*/
+
     $("#updateFormUser").click(function (event) {
         event.preventDefault();
         updateForm();
-        $("#updateUser").reset();
+        $("#editUser").modal('toggle');
+        $("tr").remove();
+        getTable();
     });
 
     function updateForm() {
-
         var user = {
             'id': $("#updateUserId").val(),
             'name': $("#updateUserName").val(),
@@ -113,8 +120,6 @@ $(document).ready(function () {
             'role': $("#updateUserRole").val(),
             'message': $("#updateUserMess").val()
         };
-
-        $("#updateFormUser").prop("disabled", true);
 
         $.ajax({
 

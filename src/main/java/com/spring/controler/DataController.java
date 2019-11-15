@@ -25,12 +25,13 @@ public class DataController {
     }
 
     @GetMapping(value = "/all")
-    public @ResponseBody List<User> getAllUsers() {
+    public @ResponseBody
+    List<User> getAllUsers() {
         List<User> list = service.findAll();
        /* ModelAndView model = new ModelAndView();
         model.addObject("list",list);*/
-       // return new ResponseEntity(list, HttpStatus.OK);
-       return list;
+        // return new ResponseEntity(list, HttpStatus.OK);
+        return list;
     }
 
     @PostMapping(value = "/add")
@@ -48,7 +49,7 @@ public class DataController {
         User upUser = service.getUserById(jsonUser.getId());
         upUser.setName(jsonUser.getName());
         upUser.setPassword(jsonUser.getPassword());
-         upUser.setRoles(roleService.findAllByRoleIsContaining(jsonUser.getRole()));
+        upUser.setRoles(roleService.findAllByRoleIsContaining(jsonUser.getRole()));
         upUser.setMessage(jsonUser.getMessage());
         service.updateUser(upUser);
     }
