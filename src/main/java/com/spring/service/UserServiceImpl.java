@@ -37,15 +37,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User getUserById(Long id) {
-        return repository.getOne(id);
+        return repository.getUserById(id);
     }
 
     @Override
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if (repository.getUserByName(user.getName()) == null){
-        repository.save(user);
-        }
+        repository.saveUser(user);
     }
 
     @Override
@@ -58,14 +56,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             }
         }
         if(i < 2) {
-            repository.save(user);
+            repository.updateUser(user);
         }
 
     }
 
     @Override
     public void deleteUser(Long id) {
-        repository.deleteById(id);
+        repository.deleteUser(id);
     }
 
     @Override

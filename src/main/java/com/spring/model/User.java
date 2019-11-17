@@ -28,6 +28,12 @@ public class User implements UserDetails {
     public User() {
     }
 
+    public User(String name, String password, String message, Set<Role> roles) {
+        this.name = name;
+        this.password = password;
+        this.message = message;
+        this.roles = roles;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -92,9 +98,9 @@ public class User implements UserDetails {
         this.message = message;
     }
 
-    public void setRoles(String role) {
+  /*  public void setRoles(String role) {
         roles.add(new Role(role));
-    }
+    }*/
 
     public void setRoles(Role role) {
         roles.add(role);
@@ -104,7 +110,7 @@ public class User implements UserDetails {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+   /* public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
+    }*/
 }

@@ -5,21 +5,19 @@ import com.spring.model.User;
 import com.spring.service.RoleService;
 import com.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-public class DataController {
+public class UserRestController {
 
     private UserService service;
     private RoleService roleService;
 
     @Autowired
-    public DataController(UserService service, RoleService roleService) {
+    public UserRestController(UserService service, RoleService roleService) {
         this.service = service;
         this.roleService = roleService;
     }
@@ -28,9 +26,6 @@ public class DataController {
     public @ResponseBody
     List<User> getAllUsers() {
         List<User> list = service.findAll();
-       /* ModelAndView model = new ModelAndView();
-        model.addObject("list",list);*/
-        // return new ResponseEntity(list, HttpStatus.OK);
         return list;
     }
 
@@ -46,11 +41,10 @@ public class DataController {
 
     @PutMapping(value = "/update")
     public void putUpdateUser(@RequestBody JsonUser jsonUser) {
-        jsonUser.toString();
         User upUser = service.getUserById(jsonUser.getId());
         upUser.setName(jsonUser.getName());
         upUser.setPassword(jsonUser.getPassword());
-        upUser.setRoles(roleService.findAllByRoleIsContaining(jsonUser.getRole()));
+        upUser.setRoles(roleService.findAllByRole(jsonUser.getRole()));
         upUser.setMessage(jsonUser.getMessage());
         service.updateUser(upUser);
     }

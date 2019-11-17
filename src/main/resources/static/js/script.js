@@ -2,42 +2,7 @@ $(document).ready(function () {
 
     getTable();
 
-    //from table
-    function getTable() {
-        $("#UserTable #list").remove();
-        $.ajax({
-            type: 'GET',
-            url: "/admin/all",
-
-            contentType: 'application/json;',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            async: true,
-            cache: false,
-            dataType: 'JSON',
-            success: function (listUsers) {
-                var htmlTable = "";
-                for (var i = 0; i < listUsers.length; i++) {
-                    htmlTable += ('<tr id="list">');
-                    htmlTable += ('<td id="tableId">' + listUsers[i].id + '</td>');
-                    htmlTable += ('<td id="tableName">' + listUsers[i].name + '</td>');
-                    htmlTable += ('<td id="tableMess">' + listUsers[i].message + '</td>');
-                    htmlTable += ('<td id="tablePass">' + listUsers[i].password + '</td>');
-                    htmlTable += ('<td id="tableRole">' + listUsers[i].roles[0].role + '</td>');
-                    htmlTable += ('<td><button id="editUserBtn"  class="btn btn-sm btn-info" type="button" data-toggle="modal"' +
-                        ' data-target="#editUser">Edit</button></td>');
-                    htmlTable += ('<td><button id="deleteUser" class="btn btn-sm btn-info" type="button">Delete</button></td>');
-                    htmlTable += ('</tr>');
-                }
-                $("#getUserTable thead").after(htmlTable);
-            }
-
-        });
-    };
-
-       //modal form
+    //modal form
     $(document).on('click', '#editUserBtn', function () {
 
         $("#updateUserId").val($(this).closest("tr").find("#tableId").text());
@@ -61,6 +26,7 @@ $(document).ready(function () {
         $("#updateUserMess").val($(this).closest("tr").find("#tableMess").text());
     });
 
+    //addForm
     $("#addFormUser").click(function (event) {
         event.preventDefault();
         addForm();
@@ -98,19 +64,13 @@ $(document).ready(function () {
 
     };
 
-    /* $(document).on('click', '#updateFormUser', function (event){
-         event.preventDefault();
-         updateForm();
-         $("#editUser").modal('toggle');
-         $("#UserTable #list").remove();
-         getTable();
-     });*/
-
+    //updateForm
     $("#updateFormUser").click(function (event) {
         event.preventDefault();
         updateForm();
         $("#editUser").modal('toggle');
         getTable();
+
     });
 
     function updateForm() {
@@ -136,13 +96,15 @@ $(document).ready(function () {
             async: true,
             cache: false,
             dataType: 'JSON',
+            success: function () {
+                getTable();
+            }
 
         });
 
-
     };
 
-
+    //deleteForm
     $(document).on('click', '#deleteUser', function () {
         var id = $(this).closest("tr").find("#tableId").text();
         deleteUser(id);
@@ -150,7 +112,6 @@ $(document).ready(function () {
     });
 
     function deleteUser(id) {
-
         $.ajax({
 
             type: 'post',
@@ -165,9 +126,10 @@ $(document).ready(function () {
             async: true,
             cache: false,
             dataType: 'JSON',
-
+            success: function () {
+                getTable();
+            }
         });
-
 
     };
 
@@ -175,5 +137,41 @@ $(document).ready(function () {
         getTable();
     });
 
+    //from table
+    function getTable() {
+
+        $.ajax({
+            type: 'GET',
+            url: "/admin/all",
+
+            contentType: 'application/json;',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            async: true,
+            cache: false,
+            dataType: 'JSON',
+            success: function (listUsers) {
+                var htmlTable = "";
+                for (var i = 0; i < listUsers.length; i++) {
+                    htmlTable += ('<tr id="list">');
+                    htmlTable += ('<td id="tableId">' + listUsers[i].id + '</td>');
+                    htmlTable += ('<td id="tableName">' + listUsers[i].name + '</td>');
+                    htmlTable += ('<td id="tableMess">' + listUsers[i].message + '</td>');
+                    htmlTable += ('<td id="tablePass">' + listUsers[i].password + '</td>');
+                    htmlTable += ('<td id="tableRole">' + listUsers[i].roles[0].role + '</td>');
+                    htmlTable += ('<td><button id="editUserBtn"  class="btn btn-sm btn-info" type="button" data-toggle="modal"' +
+                        ' data-target="#editUser">Edit</button></td>');
+                    htmlTable += ('<td><button id="deleteUser" class="btn btn-sm btn-info" type="button">Delete</button></td>');
+                    htmlTable += ('</tr>');
+                }
+                $("#UserTable #list").remove();
+                $("#getUserTable thead").after(htmlTable);
+            }
+
+        });
+    };
 
 });
+
