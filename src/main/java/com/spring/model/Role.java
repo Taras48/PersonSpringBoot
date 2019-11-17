@@ -1,6 +1,7 @@
 package com.spring.model;
 
 import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,10 +22,15 @@ public class Role implements GrantedAuthority {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))*/
 
-    /*@ManyToMany(mappedBy = "roles")
-    private Set<User> user = new HashSet<User>();*/
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> user = new HashSet<User>();
 
     public Role() {
+    }
+
+    public Role(String role, Set<User> user) {
+        this.role = role;
+        this.user = user;
     }
 
     public Role(String role) {
@@ -62,6 +68,6 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return this.role ;
+        return this.role;
     }
 }
