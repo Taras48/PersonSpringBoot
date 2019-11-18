@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public class UserRepositoryImpl implements UserRepository {
 
-        private EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Autowired
     public UserRepositoryImpl(EntityManager entityManager) {
@@ -35,20 +35,20 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void deleteUser(Long id){
+    public void deleteUser(Long id) {
         entityManager.remove(getUserById(id));
     }
 
     @Override
     public User getUserById(Long id) {
-        return entityManager.find(User.class,id);
+        return entityManager.find(User.class, id);
     }
 
     @Override
     public User getUserByName(String name) {
-        User user= (User) entityManager.createQuery(
-                "from user where name = :name")
-                .setParameter("name",name).getSingleResult();
-        return  user;
+        User user = (User) entityManager.createQuery(
+                "from User where name = :name")
+                .setParameter("name", name).getSingleResult();
+        return user;
     }
 }

@@ -114,7 +114,7 @@ $(document).ready(function () {
     function deleteUser(id) {
         $.ajax({
 
-            type: 'post',
+            type: 'delete',
             url: "/admin/delete",
 
             contentType: 'application/json;',

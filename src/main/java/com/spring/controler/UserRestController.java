@@ -49,7 +49,7 @@ public class UserRestController {
         service.updateUser(upUser);
     }
 
-    @PostMapping(value = "/delete")
+    @DeleteMapping(value = "/delete")
     public void deleteUser(@RequestBody Long id) {
         service.deleteUser(id);
     }
