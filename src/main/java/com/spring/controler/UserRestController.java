@@ -13,19 +13,19 @@ import java.util.List;
 @RequestMapping("/admin")
 public class UserRestController {
 
-    private UserService service;
+    private UserService userService;
     private RoleService roleService;
 
     @Autowired
     public UserRestController(UserService service, RoleService roleService) {
-        this.service = service;
+        this.userService = service;
         this.roleService = roleService;
     }
 
     @GetMapping(value = "/all")
     public @ResponseBody
     List<User> getAllUsers() {
-        List<User> list = service.findAll();
+        List<User> list = userService.findAll();
         return list;
     }
 
@@ -36,21 +36,21 @@ public class UserRestController {
         user.setPassword(jsonUser.getPassword());
         user.setMessage(jsonUser.getMessage());
         user.setRoles(roleService.findAllByRole(jsonUser.getRole()));
-        service.saveUser(user);
+        userService.saveUser(user);
     }
 
     @PutMapping(value = "/update")
     public void putUpdateUser(@RequestBody JsonUser jsonUser) {
-        User upUser = service.getUserById(jsonUser.getId());
+        User upUser = userService.getUserById(jsonUser.getId());
         upUser.setName(jsonUser.getName());
         upUser.setPassword(jsonUser.getPassword());
         upUser.setRoles(roleService.findAllByRole(jsonUser.getRole()));
         upUser.setMessage(jsonUser.getMessage());
-        service.updateUser(upUser);
+        userService.updateUser(upUser);
     }
 
     @DeleteMapping(value = "/delete")
     public void deleteUser(@RequestBody Long id) {
-        service.deleteUser(id);
+        userService.deleteUser(id);
     }
 }
